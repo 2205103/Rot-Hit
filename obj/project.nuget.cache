@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "R+b2DYZxAmw=",
+  "success": true,
+  "projectFilePath": "S:\\Coding\\CsHarp\\openGL\\openGL\\openGL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\opentk\\5.0.0-pre.11\\opentk.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.audio.openal\\5.0.0-pre.11\\opentk.audio.openal.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.compute\\5.0.0-pre.11\\opentk.compute.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.core\\5.0.0-pre.11\\opentk.core.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.graphics\\5.0.0-pre.11\\opentk.graphics.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.input\\5.0.0-pre.11\\opentk.input.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.mathematics\\5.0.0-pre.11\\opentk.mathematics.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.platform\\5.0.0-pre.11\\opentk.platform.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.redist.glfw\\3.3.8.39\\opentk.redist.glfw.3.3.8.39.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.windowing.common\\5.0.0-pre.11\\opentk.windowing.common.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.windowing.desktop\\5.0.0-pre.11\\opentk.windowing.desktop.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\5.0.0-pre.11\\opentk.windowing.graphicslibraryframework.5.0.0-pre.11.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
