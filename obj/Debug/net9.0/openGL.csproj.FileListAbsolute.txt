@@ -30,3 +30,4 @@ S:\Coding\CsHarp\openGL\openGL\obj\Debug\net9.0\refint\openGL.dll
 S:\Coding\CsHarp\openGL\openGL\obj\Debug\net9.0\openGL.pdb
 S:\Coding\CsHarp\openGL\openGL\obj\Debug\net9.0\openGL.genruntimeconfig.cache
 S:\Coding\CsHarp\openGL\openGL\obj\Debug\net9.0\ref\openGL.dll
+S:\Coding\CsHarp\openGL\openGL\obj\Debug\net9.0\openGL.sourcelink.json

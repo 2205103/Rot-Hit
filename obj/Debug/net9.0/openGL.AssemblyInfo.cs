@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("openGL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8580d61b92f266a666ecd109f4b2b6ca6be76c5f")]
 [assembly: System.Reflection.AssemblyProductAttribute("openGL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("openGL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

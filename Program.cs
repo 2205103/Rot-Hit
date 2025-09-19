@@ -8,7 +8,8 @@ class TriangleProgram
     private static WindowHandle _window = null!;
     private static OpenGLContextHandle _context = null!;
     private static int _vao;
-
+    private static float _rotationAngle;
+    
     public static void Main()
     {
         Toolkit.Init(new ToolkitOptions());
@@ -42,24 +43,11 @@ class TriangleProgram
         Shader shader = new Shader();
         shader.Setup();
 
-        Vector3[] verticies = [
-            new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.5f,  0.5f, -0.5f),
-            new Vector3(0.5f,  0.5f, -0.5f), new Vector3(-0.5f,  0.5f, -0.5f), new Vector3(-0.5f, -0.5f, -0.5f),
-            new Vector3(-0.5f, -0.5f,  0.5f), new Vector3(0.5f, -0.5f,  0.5f), new Vector3(0.5f,  0.5f,  0.5f),
-            new Vector3(0.5f,  0.5f,  0.5f), new Vector3(-0.5f,  0.5f,  0.5f), new Vector3(-0.5f, -0.5f,  0.5f),
-            new Vector3(-0.5f,  0.5f,  0.5f), new Vector3(-0.5f,  0.5f, -0.5f), new Vector3(-0.5f, -0.5f, -0.5f),
-            new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(-0.5f, -0.5f,  0.5f), new Vector3(-0.5f,  0.5f,  0.5f),
-            new Vector3(0.5f,  0.5f,  0.5f), new Vector3(0.5f,  0.5f, -0.5f), new Vector3(0.5f, -0.5f, -0.5f),
-            new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.5f, -0.5f,  0.5f), new Vector3(0.5f,  0.5f,  0.5f),
-            new Vector3(-0.5f, -0.5f, -0.5f), new Vector3(0.5f, -0.5f, -0.5f), new Vector3(0.5f, -0.5f,  0.5f),
-            new Vector3(0.5f, -0.5f,  0.5f), new Vector3(-0.5f, -0.5f,  0.5f), new Vector3(-0.5f, -0.5f, -0.5f),
-            new Vector3(-0.5f,  0.5f, -0.5f), new Vector3(0.5f,  0.5f, -0.5f), new Vector3(0.5f,  0.5f,  0.5f),
-            new Vector3(0.5f,  0.5f,  0.5f), new Vector3(-0.5f,  0.5f,  0.5f), new Vector3(-0.5f,  0.5f, -0.5f),
-        ];
+        Vector3[] verticies = [(-0.5f, -0.5f, 0.0f), (0.5f, -0.5f, 0.0f), (-0.5f, 0.5f, 0.0f),
+                                (0.5f, -0.5f, 0.0f), (0.5f, 0.5f, 0.0f), (-0.5f, 0.5f, 0.0f)];
 
-        Matrix4 identity = Matrix4.Identity;
-        Matrix4 rotation = Matrix4.CreateRotationY(MathHelper.DegreesToRadians(45f));
 
+        Matrix4 rotation = Matrix4.CreateRotationZ(0.5f);
 
         // Create and bind VAO (required for OpenGL 3.3 core)
         _vao = GL.GenVertexArray();
@@ -69,23 +57,43 @@ class TriangleProgram
         GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
         GL.BufferData(BufferTarget.ArrayBuffer, verticies.Length * sizeof(float) * 3, verticies, BufferUsage.StaticDraw);
 
-        uint position = (uint)GL.GetAttribLocation(shader.ProgramHandle, "position");
 
+        uint position = (uint)GL.GetAttribLocation(shader.ProgramHandle, "position");
         GL.EnableVertexAttribArray(position);
         GL.VertexAttribPointer(position, 3, VertexAttribPointerType.Float, false, sizeof(float) * 3, 0);
 
-        // --- Main Loop ---
+
+        int uniform = GL.GetUniformLocation(shader.ProgramHandle, "rotation");
+        Console.WriteLine(uniform);
+
+        GL.UseProgram(shader.ProgramHandle);
+        GL.BindVertexArray(_vao);
+
+
+
         while (!Toolkit.Window.IsWindowDestroyed(_window))
         {
             Toolkit.Window.ProcessEvents(false);
+
+            if (true)
+            {
+                _rotationAngle += 0.001f;
+                rotation = Matrix4.CreateRotationZ(_rotationAngle);
+            }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             GL.UseProgram(shader.ProgramHandle);
             GL.BindVertexArray(_vao);
+
+            // Pass matrix data to shader
+            GL.UniformMatrix4f(uniform, 1, false, in rotation);
+
             GL.DrawArrays(PrimitiveType.Triangles, 0, verticies.Length);
 
             Toolkit.OpenGL.SwapBuffers(_context);
+            
+            // Small delay to control frame rate
             //System.Threading.Thread.Sleep(16); // ~60 FPS
         }
 
