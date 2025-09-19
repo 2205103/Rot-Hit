@@ -43,8 +43,25 @@ class TriangleProgram
         Shader shader = new Shader();
         shader.Setup();
 
-        Vector3[] verticies = [(-0.5f, -0.5f, 0.0f), (0.5f, -0.5f, 0.0f), (-0.5f, 0.5f, 0.0f),
-                                (0.5f, -0.5f, 0.0f), (0.5f, 0.5f, 0.0f), (-0.5f, 0.5f, 0.0f)];
+        Vector3[] verticies = [
+            (-0.5f, -0.5f, -0.5f), (0.5f, -0.5f, -0.5f),(0.5f,  0.5f, -0.5f),
+            (0.5f,  0.5f, -0.5f), (-0.5f,  0.5f, -0.5f),(-0.5f, -0.5f, -0.5f),
+
+            (-0.5f, -0.5f,  0.5f), (0.5f, -0.5f,  0.5f),(0.5f,  0.5f,  0.5f),
+            (0.5f,  0.5f,  0.5f), (-0.5f,  0.5f,  0.5f),(-0.5f, -0.5f,  0.5f),
+
+            (-0.5f,  0.5f,  0.5f), (-0.5f,  0.5f, -0.5f),(-0.5f, -0.5f, -0.5f),
+            (-0.5f, -0.5f, -0.5f), (-0.5f, -0.5f,  0.5f),(-0.5f,  0.5f,  0.5f),
+
+            (0.5f,  0.5f,  0.5f), (0.5f,  0.5f, -0.5f),(0.5f, -0.5f, -0.5f),
+            (0.5f, -0.5f, -0.5f), (0.5f, -0.5f,  0.5f),(0.5f,  0.5f,  0.5f),
+
+            (-0.5f, -0.5f, -0.5f), (0.5f, -0.5f, -0.5f),(0.5f, -0.5f,  0.5f),
+            (0.5f, -0.5f,  0.5f), (-0.5f, -0.5f,  0.5f),(-0.5f, -0.5f, -0.5f),
+
+            (-0.5f,  0.5f, -0.5f), (0.5f,  0.5f, -0.5f),(0.5f,  0.5f,  0.5f),
+            (0.5f,  0.5f,  0.5f), (-0.5f,  0.5f,  0.5f),(-0.5f,  0.5f, -0.5f),
+        ];
 
 
         Matrix4 rotation = Matrix4.CreateRotationZ(0.5f);
@@ -78,7 +95,7 @@ class TriangleProgram
             if (true)
             {
                 _rotationAngle += 0.001f;
-                rotation = Matrix4.CreateRotationZ(_rotationAngle);
+                rotation = Matrix4.CreateFromAxisAngle(new Vector3(1.0f,2.0f,3.0f),_rotationAngle);
             }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
