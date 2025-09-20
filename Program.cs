@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
 using OpenTK.Mathematics;
+using OpenTK.Platform.Native.Windows;
 
 
 class TriangleProgram
@@ -9,6 +10,7 @@ class TriangleProgram
     private static OpenGLContextHandle _context = null!;
     private static int _vao;
     private static float _rotationAngle;
+    private static bool isKeyDown = false;
     
     public static void Main()
     {
@@ -34,6 +36,12 @@ class TriangleProgram
         {
             if (e is CloseEventArgs)
                 Toolkit.Window.Destroy(_window);
+
+            if (e is KeyDownEventArgs)
+                isKeyDown = true;
+
+            if (e is KeyUpEventArgs)
+                isKeyDown = false;
         };
 
         // --- Setup OpenGL ---
@@ -64,7 +72,7 @@ class TriangleProgram
         ];
 
 
-        Matrix4 rotation = Matrix4.CreateRotationZ(0.5f);
+        Matrix4 rotation=Matrix4.Identity;
 
         // Create and bind VAO (required for OpenGL 3.3 core)
         _vao = GL.GenVertexArray();
@@ -87,16 +95,16 @@ class TriangleProgram
         GL.BindVertexArray(_vao);
 
 
-
         while (!Toolkit.Window.IsWindowDestroyed(_window))
         {
             Toolkit.Window.ProcessEvents(false);
 
-            if (true)
+            if (isKeyDown)
             {
                 _rotationAngle += 0.001f;
-                rotation = Matrix4.CreateFromAxisAngle(new Vector3(1.0f,2.0f,3.0f),_rotationAngle);
+                rotation = Matrix4.CreateRotationY(_rotationAngle)* Matrix4.CreateRotationX(-_rotationAngle)* Matrix4.CreateRotationY(_rotationAngle / 2f);;
             }
+
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
@@ -109,9 +117,10 @@ class TriangleProgram
             GL.DrawArrays(PrimitiveType.Triangles, 0, verticies.Length);
 
             Toolkit.OpenGL.SwapBuffers(_context);
-            
+
             // Small delay to control frame rate
-            //System.Threading.Thread.Sleep(16); // ~60 FPS
+            //System.Threading.Thread.Sleep(16);
+            // ~60 FPS
         }
 
         Cleanup(shader.ProgramHandle);
