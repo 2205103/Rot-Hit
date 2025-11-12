@@ -102,7 +102,8 @@ class TriangleProgram
             if (isKeyDown)
             {
                 _rotationAngle += 0.001f;
-                rotation = Matrix4.CreateRotationY(_rotationAngle)* Matrix4.CreateRotationX(-_rotationAngle)* Matrix4.CreateRotationY(_rotationAngle / 2f);;
+                //rotation = Matrix4.CreateRotationY(_rotationAngle)* Matrix4.CreateRotationX(-_rotationAngle)* Matrix4.CreateRotationY(_rotationAngle / 2f);;
+                rotation = Matrix4.CreateFromAxisAngle(new Vector3(0.25f, 0.25f, 0.25f), _rotationAngle);
             }
 
 
